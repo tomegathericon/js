@@ -2,13 +2,24 @@ import React from 'react';
 
 class App extends React.Component {
    render() {
-      return (
+      
+       var a = 1;
+       var b = 2;
+       var c = a+b;
+
+       return (
+
          <div>
             Hello World!!!
             <p>This is Tomegathericon</p>
-         </div>
+            <p>{c}</p>
+          </div>
+
+
       );
    }
 }
+
+
 
 export default App;
