@@ -117,3 +117,7 @@ document.write('<input type="button" value="Mult" onclick="math_operations.case_
 document.write('<input type="button" value="Div" onclick="math_operations.case_value(this.value)" />');
 
 }
+
+
+
+
