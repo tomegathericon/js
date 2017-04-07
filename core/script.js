@@ -36,8 +36,8 @@ function static_variables() {
 
 
 function get_variables() {
-    var a = parseInt(prompt("Enter the first number","0"));
-    var b = parseInt(prompt("Enter the second number","0"));
+    var a = parseInt(prompt("Enter the first number",""));
+    var b = parseInt(prompt("Enter the second number",""));
     var c = a+b;
     console.log(a);
     console.log(b);
