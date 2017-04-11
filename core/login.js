@@ -14,19 +14,34 @@ function login()
         api.setRequestHeader("Content-type", "application/json");
         api.send(JSON.stringify({"username":login_form.username.value, "password":login_form.password.value}));
         api.onreadystatechange = function () 
-          {
+          { 
+            alert(api.readyState);
+            alert(api.status);
+            
             if (this.readyState == 4 && this.status == 200)
             {
-
-
-        console.log(api.status);
-        console.log(api.statusText);
-        console.log(api.readyState);
-        console.log(api.responseText);
+                alert("IF");
+                console.log(api.status);
+                console.log(api.statusText);
+                console.log(api.readyState);
+                console.log(api.responseText);
+                
             }
+
+            if (this.status == 404)                      
+             
+            {
+                alert("ELSE");
+                document.body.removeChild(login_form);
+                e = document.createElement("h2");
+                e.setAttribute("id", "e");
+                e.innerHTML="Invalid Username or Password";
+                document.body.appendChild(e);
+            }
+
+
           }
     }
-
     
     login_form = document.createElement("form");
     login_form.id = "login_form";

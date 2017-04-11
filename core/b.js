@@ -45,7 +45,6 @@ function api_call()
     console.log(api.responseText);
 
     api_call.response = JSON.parse(api.responseText);
-    document.write(api_call.response.token);
 }
 
 
