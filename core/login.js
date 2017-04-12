@@ -1,5 +1,6 @@
 
 var linebreak = "<br />";
+//var base_url = "https://impressico.thecouch.tv/thecouch";
 var base_url = "http://vs.impressicocrm.com";
 //var base_url = "http://vsolutionsurvey.online";
 
@@ -15,12 +16,12 @@ function login()
         api.send(JSON.stringify({"username":login_form.username.value, "password":login_form.password.value}));
         api.onreadystatechange = function () 
           { 
-            alert(api.readyState);
-            alert(api.status);
+            //alert(api.readyState);
+            // alert(api.status);
             
             if (this.readyState == 4 && this.status == 200)
             {
-                alert("IF");
+               // alert("IF");
                 console.log(api.status);
                 console.log(api.statusText);
                 console.log(api.readyState);
@@ -31,14 +32,18 @@ function login()
             if (this.status == 404)                      
              
             {
-                alert("ELSE");
+                //alert("ELSE");
                 document.body.removeChild(login_form);
-                e = document.createElement("h2");
+               /*e = document.createElement("h2");
                 e.setAttribute("id", "e");
                 e.innerHTML="Invalid Username or Password";
-                document.body.appendChild(e);
+                document.body.appendChild(e);*/
+                alert("Invalid Username or Password, Please Try Again!!!");
+                location.reload();
             }
 
+            window.localStorage.setItem("login_response", this.responseText);
+            document.location.href="home.html";
 
           }
     }
@@ -86,4 +91,9 @@ function login()
 
 
 }
+
+
+
+
+
 
