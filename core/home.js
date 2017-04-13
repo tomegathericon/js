@@ -22,9 +22,28 @@ function greeting()
 
     if ( date.getHours() >=16 )
     {
-        document.write("Good Evening "+login.resonse.user.first_name+" "+login_response.user.last_name);
+        document.write("Good Evening "+login_response.user.first_name+" "+login_response.user.last_name);
     }
 }
+
+function ask_user_to_chose()
+{
+    var chose_profile = document.createElement("input");
+    chose_profile.id = "profile_button";
+    chose_profile.type = "button";
+    chose_profile.value = "View Profile";
+    chose_profile.onclick = function() {get_logged_in_user_profile();};
+
+    var chose_region = document.createElement("input");
+    chose_region.id = "region_button";
+    chose_region.type = "button";
+    chose_region.value = "View Available Regions";
+    chose_region.onclick = function() {get_regions();};
+
+    document.body.appendChild(chose_profile);
+    document.body.appendChild(chose_region);
+}
+
 
 function get_logged_in_user_profile()
 {
@@ -42,7 +61,7 @@ function get_logged_in_user_profile()
     );
     user_table = document.createElement("table");
     user_table_caption = document.createElement("caption");
-    user_table_caption.innerHTML = "User Profile";
+    user_table_caption.innerHTML = "<h2>User Profile</h2>";
     user_table.appendChild(user_table_caption);
     user_table_style = document.createElement("style");
     user_table_style.innerHTML = "table, tr, td { border: 1px solid black; border-collapse: collapse; padding: 15px; }" 
@@ -60,7 +79,7 @@ function get_logged_in_user_profile()
     user_table.appendChild(row);
     }
 
-    
+    document.body.innerHTML=""; 
     document.body.appendChild(user_table);
     document.body.appendChild(user_table_style);
     
@@ -69,10 +88,11 @@ function get_logged_in_user_profile()
 
 function get_regions()
 {   
-    regions_text = document.createTextNode("Please Chose From The Following Regions:");
+    regions_text = document.createTextNode("Please Chose From The Following Regions To Get The Corresponding Surveys:");
     nextline = document.createElement("br");
-    document.body.appendChild(nextline);
+    document.body.innerHTML = "";
     document.body.appendChild(regions_text);
+    
 
     for ( f=0; f < login_response.user.regions.length; f++ )
     {
@@ -108,6 +128,7 @@ function get_surveys(regions_id)
                 console.log(api.statusText);
                 console.log(api.readyState);
                 console.log(api.responseText);
+              
                 
             }
 
@@ -120,7 +141,8 @@ function get_surveys(regions_id)
                 alert("Uh-Oh");
                 location.reload();
             }
-             
+
+            window.localStorage.setItem("survey_response", this.responseText);
            // {
                 //alert("ELSE");
              //   document.body.removeChild(login_form);
