@@ -1,71 +1,6 @@
 login_response = JSON.parse(window.localStorage.getItem("login_response"))
 var base_url = "http://vs.impressicocrm.com";
-
-function greeting()
-{
-    var date = new Date();
-    
-    if ( date.getHours() >= 0 && date.getHours() < 8 )
-    {
-        document.write("You Should Be Sleeping "+login_response.user.first_name+" "+login_response.user.last_name);
-    }
-
-    if ( date.getHours() >= 8 && date.getHours() < 12 )
-    {
-        document.write("Good Morning "+login_response.user.first_name+" "+login_response.user.last_name);
-    }
-
-    if ( date.getHours() >= 12 && date.getHours() < 16 )
-    {
-        document.write("Good Afternoon "+login_response.user.first_name+" "+login_response.user.last_name);
-    }
-
-    if ( date.getHours() >=16 )
-    {
-        document.write("Good Evening "+login.resonse.user.first_name+" "+login_response.user.last_name);
-    }
-}
-
-function get_logged_in_user_profile()
-{
-    user_profile = {};
-    user_profile.show = new Array();
-    user_profile.show.push(
-        
-        {"Gender"     : login_response.user.gender},
-        {"First Name" : login_response.user.first_name},
-        {"Last Name"  : login_response.user.last_name},
-        {"Email"      : login_response.user.email},
-        {"Phone"      : login_response.user.phone1},
-        {"Alternate Phone" : login_response.user.phone2}
-        
-    );
-    user_table = document.createElement("table");
-    user_table_caption = document.createElement("caption");
-    user_table_caption.innerHTML = "User Profile";
-    user_table.appendChild(user_table_caption);
-    user_table_style = document.createElement("style");
-    user_table_style.innerHTML = "table, tr, td { border: 1px solid black; border-collapse: collapse; padding: 15px; }" 
-    
-    for ( f=0; f<user_profile.show.length; f++ )
-    {
-    row = document.createElement("tr");
-    row.colspan = "2";
-    row_key = document.createElement("td");
-    row_key.innerHTML = Object.keys(user_profile.show[f]);
-    row_value = document.createElement("td");
-    row_value.innerHTML = Object.values(user_profile.show[f]);
-    row.appendChild(row_key);
-    row.appendChild(row_value);
-    user_table.appendChild(row);
-    }
-
-    
-    document.body.appendChild(user_table);
-    document.body.appendChild(user_table_style);
-    
-}
- 
+document.write("Hello "+login_response.user.first_name+" "+login_response.user.last_name);
 
 function get_regions()
 {   
@@ -136,5 +71,5 @@ function get_surveys(regions_id)
             //document.location.href="home.html";
 
           }
-}
 
+}
